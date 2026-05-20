@@ -1,0 +1,30 @@
+package Dominio;
+
+public class Water extends Spell{
+
+	private int cantHeal;
+	private int presionAgua;
+	
+	public Water(String nombreHechizo, String tipo, int daño, int cantHeal,int presionAgua) {
+		super(nombreHechizo, tipo, daño);
+		this.cantHeal = cantHeal;
+		this.presionAgua = presionAgua;
+	}
+
+	public int getCantHeal() {
+		return cantHeal;
+	}
+
+	public int getPresionAgua() {
+		return presionAgua;
+	}
+
+	@Override
+	public String toString() {
+		return "Nombre: "+nombreHechizo+" | Tipo: "+tipo+" | Daño: "+daño+" | Cantidad de Heal: "+cantHeal+" | Presion del Agua: "+presionAgua;
+	}
+	
+	
+	
+	
+}

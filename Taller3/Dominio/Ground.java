@@ -1,0 +1,22 @@
+package Dominio;
+
+public class Ground extends Spell{
+	 
+	private int mejoraDefensa;
+	
+	public Ground(String nombreHechizo, String tipo, int daño,int mejoraDefensa) {
+		super(nombreHechizo, tipo, daño);
+		this.mejoraDefensa = mejoraDefensa;
+	}
+
+	public int getMejoraDefensa() {
+		return mejoraDefensa;
+	}
+
+	@Override
+	public String toString() {
+		return "Nombre: "+nombreHechizo+" | Tipo:"+tipo+" | Daño:"+daño+" | Mejora Defensa: "+mejoraDefensa;
+	}
+
+	
+}
