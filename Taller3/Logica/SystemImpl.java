@@ -109,6 +109,7 @@ public class SystemImpl implements ISystem{
 		return list;
 	}
 	
+	
 	@Override //Ver si es que debe de imprimirse con sus hechizos o no...
 	public String viewMages() {
 		String list= "----MAGOS | MAGES----\n";
@@ -123,5 +124,88 @@ public class SystemImpl implements ISystem{
 	public int getTamañoListaH() {
 		return listaHechizos.size();
 	}
+	
+	@Override
+	public String mejoresHechizos() {
+		String list = "-----Mejores 10 Hechizos | The Best 10 Spells-----\n";
+		
+		List<Spell> copia = new ArrayList<Spell>();
+		
+		for(Spell s : listaHechizos) {
+			copia.add(s);
+		}
+		
+		for(int i = 0; i < copia.size()-1; i++) {
+			for(int j = i+1; j < copia.size(); j++) {
+				if(copia.get(i).puntuacion() < copia.get(j).puntuacion()) {
+					
+					Spell aux = copia.get(i);
+					copia.set(i, copia.get(j));
+					copia.set(j, aux);
+					
+				}
+			}
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			list += copia.get(i).getNombreHechizo() + " | Puntuacion : "+ copia.get(i).puntuacion()+"\n";
+		}
+		
+		return list;
+	}
+	
+	@Override
+	public String mejoresMagos() {
+		String list = "-----Top 3 Mejores Magos | Top Three Best Mages-----\n";
+		
+		List<Mage> copia = new ArrayList<Mage>();
+		
+		for(Mage m : listaMagos) {
+			copia.add(m);
+		}
+		
+		for(int i = 0; i < copia.size()-1; i++) {
+			for(int j = i+1; j < copia.size(); j++) {
+				if(copia.get(i).puntuacion() < copia.get(j).puntuacion()) {
+					
+					Mage aux = copia.get(i);
+					copia.set(i, copia.get(j));
+					copia.set(j, aux);
+					
+				}
+			}
+		}
+		
+		for(int i = 0; i < 3; i++) {
+			list += copia.get(i).getNombre() + " | Puntuacion : "+ copia.get(i).puntuacion()+"\n";
+		}
+		
+		return list;
+	
+	}
+	
+	@Override
+	public String viewMagesPuntuacion() {
+		String list =  "----MAGOS CON PUNTUACION| MAGES WITH POINTS----\n";
+		
+		for(Mage mago : listaMagos) {
+			list += "Nombre Mago: " + mago.getNombre() +" | Puntuacion: "+ mago.puntuacion() +"\n";
+		}
+		
+		return list;
+	}
+	
+	@Override
+	public String viewSpellPuntuacion() {
+		String list =  "----HECHIZOS CON PUNTUACION | SPELLS WITH POINTS----\n";
+		
+		for(Spell hechizo : listaHechizos) {
+			list += "Nombre Hechizo: "+hechizo.getNombreHechizo() +" | Puntuacion: "+hechizo.puntuacion() + "\n";
+		}
+		
+		return list;
+	}
+	
+	
 }
 

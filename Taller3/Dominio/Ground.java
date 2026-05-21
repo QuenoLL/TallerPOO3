@@ -17,6 +17,12 @@ public class Ground extends Spell{
 	public String toString() {
 		return "Nombre: "+nombreHechizo+" | Tipo:"+tipo+" | Daño:"+daño+" | Mejora Defensa: "+mejoraDefensa;
 	}
+	
+	@Override
+	public double puntuacion() {
+		double puntero = (this.daño * this.mejoraDefensa)/2;
+		return puntero;
+	}
 
 	
 }

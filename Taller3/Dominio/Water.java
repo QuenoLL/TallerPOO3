@@ -24,6 +24,12 @@ public class Water extends Spell{
 		return "Nombre: "+nombreHechizo+" | Tipo: "+tipo+" | Daño: "+daño+" | Cantidad de Heal: "+cantHeal+" | Presion del Agua: "+presionAgua;
 	}
 	
+	@Override
+	public double puntuacion() {
+		double puntero = (this.daño + this.cantHeal + this.presionAgua)*2;
+		return puntero;
+	}
+	
 	
 	
 	

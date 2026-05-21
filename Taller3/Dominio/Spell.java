@@ -1,6 +1,6 @@
 package Dominio;
 
-public class Spell {
+public class Spell implements Condicional{
 	
 	protected String nombreHechizo;
 	protected String tipo;
@@ -29,6 +29,11 @@ public class Spell {
 		return "Spell [nombreHechizo=" + nombreHechizo + ", tipo=" + tipo + ", daño=" + daño + "]";
 	}
 	
+	@Override
+	public double puntuacion() {
+		return 0.0;
+		
+	}
 	
 	
 	

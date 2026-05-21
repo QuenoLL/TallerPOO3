@@ -74,17 +74,52 @@ public class App {
 			}while(opcion < 1 || opcion > 7);
 			
 			switch(opcion) {
+			case 1:
+				mejoresSpells();
+				break;
+			case 2:
+				mejoresMagos();
+				break;
 			case 3:
 				mostrarHechizos();
 				break;
 			case 4:
 				mostrarMagos();
 				break;
+			case 5:
+				hechizosConPuntuacion();
+				break;
+			case 6:
+				magosConPuntuacion();
+				break;
 			case 7:
 				return;
 			}
 		}
 		
+	}
+
+	private static void magosConPuntuacion() {
+		System.out.println();
+		System.out.println(systemImpl.viewMagesPuntuacion());
+		
+	}
+
+	private static void hechizosConPuntuacion() {
+		System.out.println();
+		System.out.println(systemImpl.viewSpellPuntuacion());
+		
+	}
+
+	private static void mejoresMagos() {
+		System.out.println();
+		System.out.println(systemImpl.mejoresMagos());
+		
+	}
+
+	private static void mejoresSpells() {
+		System.out.println();
+		System.out.println(systemImpl.mejoresHechizos());
 	}
 
 	private static void mostrarMagos() {

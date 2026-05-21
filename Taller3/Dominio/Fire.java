@@ -17,6 +17,12 @@ public class Fire extends Spell{
 	public String toString() {
 		return "Nombre: "+nombreHechizo+" | Tipo: "+tipo+" | Daño: "+daño+" | Duracion Quemadura: "+duracion;
 	}
+	
+	@Override
+	public double puntuacion() {
+		double puntero = this.daño * this.duracion;
+		return puntero;
+	}
 
 	
 	

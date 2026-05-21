@@ -9,5 +9,9 @@ public interface ISystem {
 	void addMage(String name,List<Integer> listaIndices);
 	String viewSpells();
 	String viewMages();
+	String mejoresHechizos();
+	String mejoresMagos();
+	String viewSpellPuntuacion();
+	String viewMagesPuntuacion();
 
 }

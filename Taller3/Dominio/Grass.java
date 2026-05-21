@@ -24,6 +24,14 @@ public class Grass extends Spell{
 		return "Nombre: "+nombreHechizo+" | Tipo: "+tipo+" | Daño: "+daño+" | Duracion Stun: "+duracionStun+" | Cantidad plantas: "+cantPlantas;
 	}
 	
+	@Override
+	public double puntuacion() {
+		double puntero = this.daño + (this.duracionStun * this.cantPlantas);
+		return puntero;
+	}
+	
+	
+	
 	
 	
 	
