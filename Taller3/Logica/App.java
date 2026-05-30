@@ -25,7 +25,7 @@ public class App {
 	 * Muestra el menú principal que delega a los submenus.
 	 * 
 	 */
-	private static void menu() {
+	private static void menu(){
 		int opcion = 0;
 		
 		while(true) {
@@ -138,7 +138,7 @@ public class App {
 		System.out.println(systemImpl.viewSpells());
 	}
 
-	private static void menuAdministrador() {
+	private static void menuAdministrador(){
 		int opcion = 0;
 		
 		while(true) {
@@ -308,11 +308,98 @@ public class App {
 	}
 
 	private static void modificarMago() {
-		// TODO Auto-generated method stub
+		int indice = 0;//Recordar que es (indice + 1) la que ingresa el usuario...
+		int opcion = 0;
 		
+		System.out.println("---Ingrese el indice del mago a modificar---");
+		for(int i = 0; i < systemImpl.getTamañoListaM();i++) {
+			System.out.println((i+1)+".- "+systemImpl.getLineaMago(i));
+		}
+		
+		do {
+			try {
+				System.out.print("> ");
+				indice = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(indice < 0 || indice > systemImpl.getTamañoListaM());
+		
+		indice--;//Devuelvo al valor que corresponde (i+1-1) == i...
+		
+		System.out.println("Que deseas modificar "
+				+ "\n1.- Agregar Hechizo"
+				+ "\n2.- Eliminar Hechizo"
+				+ "\n3.- Salir");
+		
+		do {
+			try {
+				System.out.print("> ");
+				opcion = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(opcion < 1 || opcion > 3);
+		
+		//Switch que pasa por los tres casos de eleccion de usuario.
+		switch(opcion) {
+		case 1:
+			System.out.println("---Ingrese el indice del hechizo a agregar---");
+			int indiceSpell = indiceHechizo();
+			systemImpl.modificarMagoHechizo(indice,opcion, indiceSpell);
+			System.out.println("Hechizo agregado con exito!!!");
+			break;
+		
+		case 2:
+			System.out.println("---Ingrese el indice del hechizo que quiere eliminar---");
+			int indiceSpellEliminar = indiceHechizoEliminar(indice);
+			systemImpl.modificarMagoHechizo(indice,opcion, indiceSpellEliminar);
+			System.out.println("Hechizo eliminado con exito!!!");
+			break;
+		
+		case 3:
+			System.out.println("De vuelta al menu...");
+			break;
+		}
+		
+		systemImpl.sobrescribirArchMages();
+				
+	}
+	
+	private static int indiceHechizoEliminar(int indiceMago) {
+		int indiceSpell = 0;
+		System.out.println(systemImpl.getListaSpellMago(indiceMago));
+		
+		do {
+			try {
+				System.out.print("> ");
+				indiceSpell = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(indiceSpell < 1 || indiceSpell > systemImpl.getTamañoListaSpellMago(indiceMago));
+		
+		return indiceSpell-1;
+	}
+	
+	private static int indiceHechizo() {
+		int indiceSpell = 0;
+		for(int i = 0; i < systemImpl.getTamañoListaH(); i++) {
+			System.out.println((i+1)+".- "+systemImpl.getLineaSpell(i));
+		}
+	
+		do {
+			try {
+				System.out.print("> ");
+				indiceSpell = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(indiceSpell < 1 || indiceSpell > systemImpl.getTamañoListaH());
+		
+		return indiceSpell-1;
 	}
 
-	//Falta sobrescribir el arch...Y arreglar segun indique nicolas
 	private static void agregarMago() {
 		String name, opcion = null;
 		List<Integer> indicesHechizos = new ArrayList<Integer>();

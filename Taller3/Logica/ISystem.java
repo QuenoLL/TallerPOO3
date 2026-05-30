@@ -10,11 +10,13 @@ public interface ISystem {
 	void sobrescribirArchMages();
 	void sobrescribirArchSpell();
 	void addSpell(String name, String tipo, int daño, String variable);
+	void modificarMagoHechizo(int indice,int opcion, int indiceSpell);
 	String viewSpells();
 	String viewMages();
 	String mejoresHechizos();
 	String mejoresMagos();
 	String viewSpellPuntuacion();
 	String viewMagesPuntuacion();
+	String getListaSpellMago(int indiceMago);
 
 }

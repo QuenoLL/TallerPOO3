@@ -126,6 +126,18 @@ public class SystemImpl implements ISystem{
 		return listaHechizos.size();
 	}
 	
+	public int getTamañoListaM() {
+		return listaMagos.size();
+	}
+	
+	public String getLineaMago(int indice) {
+		return listaMagos.get(indice).toString();		
+	}
+	
+	public String getLineaSpell(int indice) {
+		return listaHechizos.get(indice).toString();		
+	}
+	
 	@Override
 	public String mejoresHechizos() {
 		String list = "-----Mejores 10 Hechizos | The Best 10 Spells-----\n";
@@ -283,6 +295,29 @@ public class SystemImpl implements ISystem{
 			System.out.println("ERROR. " + e.getMessage());
 		}
 
+	}
+	
+	@Override
+	public void modificarMagoHechizo(int indiceMago, int opcion, int indiceSpell) {
+		if(opcion == 1) {
+			listaMagos.get(indiceMago).addSpell(listaHechizos.get(indiceSpell));
+		}else if(opcion == 2){
+			listaMagos.get(indiceMago).removeSpell(listaMagos.get(indiceMago).getListaHechizos().get(indiceSpell));
+		}	
+	}
+	
+	@Override
+	public String getListaSpellMago(int indiceMago) {
+		String lista = "";
+		for(int i = 0; i < listaMagos.get(indiceMago).getListaHechizos().size(); i++) {
+			lista += (i+1)+".- "+listaMagos.get(indiceMago).getListaHechizos().get(i).getNombreHechizo()+"\n";
+		}
+		
+		return lista;
+	}
+	
+	public int getTamañoListaSpellMago(int indiceMago) {
+		return listaMagos.get(indiceMago).getListaHechizos().size();
 	}
 	
 	

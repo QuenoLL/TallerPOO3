@@ -21,13 +21,25 @@ public class Mage implements Condicional{
 	}
 	
 	public void addSpell(Spell hechizo) {
-		listaHechizos.add(hechizo);
+		this.listaHechizos.add(hechizo);
+	}
+	
+	public void removeSpell(Spell hechizo) {
+		this.listaHechizos.remove(hechizo);
 	}
 
 	@Override //Se debera imprimir con los hechizos???...
 	public String toString() {
+		String linea = "Nombre: "+nombre+" | Hechizos: ";
+		for(int i = 0; i < listaHechizos.size(); i++) {
+			linea += listaHechizos.get(i).getNombreHechizo();
+			if(i != listaHechizos.size()-1) {
+				linea += "|";
+			}
+		}
 		
-		return "Nombre: "+nombre+" | Cantidad Hechizos: "+this.listaHechizos.size();
+		return linea;
+		
 	}
 	
 	@Override
@@ -55,7 +67,7 @@ public class Mage implements Condicional{
 		
 		return puntero;
 	}
-	
+
 	
 	
 	
