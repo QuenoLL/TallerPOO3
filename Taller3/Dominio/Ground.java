@@ -23,6 +23,12 @@ public class Ground extends Spell{
 		double puntero = (this.daño * this.mejoraDefensa)/2;
 		return puntero;
 	}
+	
+	@Override
+	public String lineaTxt() {
+		String linea = this.nombreHechizo+";"+this.tipo+";"+this.daño+";"+this.mejoraDefensa;
+		return linea;
+	}
 
 	
 }

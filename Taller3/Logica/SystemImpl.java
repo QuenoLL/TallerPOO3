@@ -1,5 +1,6 @@
 package Logica;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -205,6 +206,86 @@ public class SystemImpl implements ISystem{
 		
 		return list;
 	}
+	
+	@Override
+	public void sobrescribirArchMages() {
+		
+		try {
+			String arch = "txts/Magos.txt";
+			FileWriter escritor = new FileWriter(arch);
+			
+			for(int i = 0; i < listaMagos.size(); i++) {
+				if(i == 0) {
+					escritor.write(listaMagos.get(i).lineaTxt());
+				}else {
+					escritor.write("\n"+listaMagos.get(i).lineaTxt());
+				}
+			}
+			
+			escritor.close();
+			
+			
+		}catch(Exception e) {
+			System.out.println("ERROR. "+e.getMessage());
+		}
+	}
+	
+	@Override
+	public void addSpell(String name, String tipo, int daño, String variable) {
+		Spell spell = null;
+		
+		switch(tipo) {
+		
+		case "Fuego":
+			spell = new Fire(name, tipo, daño, Integer.parseInt(variable));
+			break;
+			
+		case "Tierra":
+			spell = new Ground(name, tipo, daño, Integer.parseInt(variable));
+			break;
+			
+		case "Planta":
+			String[] partesP = variable.split(",");
+			int duracionStun = Integer.parseInt(partesP[0]);
+			int cantPlantas = Integer.parseInt(partesP[1]);
+			
+			spell = new Grass(name, tipo, daño, duracionStun, cantPlantas);
+			break;
+			
+		case "Agua":
+			String[] partesA = variable.split(",");
+			int cantHeal = Integer.parseInt(partesA[0]);
+			int presionAgua = Integer.parseInt(partesA[1]);
+			
+			spell = new Water(name, tipo, daño, cantHeal, presionAgua);
+			break;
+		}
+		
+		listaHechizos.add(spell);
+	}
+	
+	@Override
+	public void sobrescribirArchSpell() {
+		try {
+			String arch = "txts/Hechizos.txt";
+			FileWriter escritor = new FileWriter(arch);
+
+			for (int i = 0; i < listaHechizos.size(); i++) {
+				if(i == 0) {
+					escritor.write(listaHechizos.get(i).lineaTxt());
+				}else {
+					escritor.write("\n"+listaHechizos.get(i).lineaTxt());
+				}
+			}
+			
+			escritor.close();
+		} catch (Exception e) {
+			System.out.println("ERROR. " + e.getMessage());
+		}
+
+	}
+	
+	
 	
 	
 }

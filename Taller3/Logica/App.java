@@ -21,6 +21,10 @@ public class App {
 		menu();
 	}
 
+	/**
+	 * Muestra el menú principal que delega a los submenus.
+	 * 
+	 */
 	private static void menu() {
 		int opcion = 0;
 		
@@ -52,6 +56,9 @@ public class App {
 		}
 	}
 
+	/**
+	 * Delega a metodos de analisis.
+	 */
 	private static void menuAnalista() {
 		int opcion = 0;
 		
@@ -98,6 +105,7 @@ public class App {
 		}
 		
 	}
+
 
 	private static void magosConPuntuacion() {
 		System.out.println();
@@ -160,11 +168,143 @@ public class App {
 			case 2:
 				modificarMago();
 				break;
+				
+			case 4:
+				agregarHechizo();
+				break;
+				
 			case 7:
 				return;
 			}
 		}
 		
+	}
+
+	private static void agregarHechizo() {
+		int opcion = 0;
+		String name = null;
+		
+		System.out.println("\nQue tipo de hechizo desea agregar?:");
+		System.out.println("1. Fuego");
+		System.out.println("2. Tierra");
+		System.out.println("3. Planta");
+		System.out.println("4. Agua");
+		System.out.println("5. Salir");
+		
+		
+		do {
+			try {
+				System.out.print("> ");
+				opcion = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(opcion < 1 || opcion > 4);
+		
+		do {
+			System.out.print("Ingrese el nombre de su Hechizo: ");
+			name = entrada.nextLine();
+		}while(name == "");
+		
+		int daño = 0;
+		
+		do {
+			try {
+				System.out.print("Ingrese el daño del hechizo: ");
+				daño = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(daño < 0);
+		
+		//Switch para dictaminar el tipo de entrada de informacion segun tipo de de hechizo (Spell)...
+		switch(opcion) {
+		
+		case 1:
+			int duracionQuemadura = 0;
+			
+			do {
+				try {
+					System.out.print("Ingrese la duracion de la quemadura: ");
+					duracionQuemadura = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(daño < 0);
+			
+			systemImpl.addSpell(name, "Fuego", daño, String.valueOf(duracionQuemadura));
+			break;
+		
+		case 2:
+			int mejoraDefensa = 0;
+			
+			do {
+				try {
+					System.out.print("Ingrese la mejora de defensa: ");
+					mejoraDefensa = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(mejoraDefensa < 0);
+			
+			systemImpl.addSpell(name, "Tierra", daño, String.valueOf(mejoraDefensa));
+			break;
+			
+		case 3:
+			int duracionStun = 0, cantPlantas = 0;
+			
+			do {
+				try{
+					System.out.print("Ingrese la duracion del stun: ");
+					duracionStun = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(duracionStun < 0);
+			
+			do {
+				try{
+					System.out.print("Ingrese la cantidad de plantas: ");
+					cantPlantas = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(cantPlantas < 0);
+			
+			String variable = duracionStun+","+cantPlantas;
+			
+			systemImpl.addSpell(name, "Planta", daño, variable);
+			break;
+			
+		case 4:
+			int cantHeal = 0, presionAgua = 0;
+			
+			do {
+				try{
+					System.out.print("Ingrese la cantidad de heal: ");
+					cantHeal = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(cantHeal < 0);
+			
+			do {
+				try{
+					System.out.print("Ingrese la presion del agua: ");
+					presionAgua = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(presionAgua < 0);
+			
+			String variableAgua = cantHeal+","+presionAgua;
+			
+			systemImpl.addSpell(name, "Agua", daño, variableAgua);
+			break;
+			
+		}
+		
+		systemImpl.sobrescribirArchSpell();	
 	}
 
 	private static void modificarMago() {
@@ -208,6 +348,9 @@ public class App {
 		}else {
 			systemImpl.addMage(name,indicesHechizos);
 		}
+		
+		//Sobrescribo independientemente de la decision...
+		systemImpl.sobrescribirArchMages();
 		
 	}
 

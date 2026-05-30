@@ -23,6 +23,12 @@ public class Fire extends Spell{
 		double puntero = this.daño * this.duracion;
 		return puntero;
 	}
+	
+	@Override
+	public String lineaTxt() {
+		String linea = this.nombreHechizo+";"+this.tipo+";"+this.daño+";"+this.duracion;
+		return linea;
+	}
 
 	
 	

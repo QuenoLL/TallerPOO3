@@ -30,6 +30,12 @@ public class Grass extends Spell{
 		return puntero;
 	}
 	
+	@Override
+	public String lineaTxt() {
+		String linea = this.nombreHechizo+";"+this.tipo+";"+this.daño+";"+this.duracionStun+","+cantPlantas;
+		return linea;
+	}
+	
 	
 	
 	

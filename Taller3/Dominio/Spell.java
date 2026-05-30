@@ -15,7 +15,7 @@ public class Spell implements Condicional{
 	public String getNombreHechizo() {
 		return nombreHechizo;
 	}
-
+ 
 	public String getTipo() {
 		return tipo;
 	}
@@ -33,6 +33,12 @@ public class Spell implements Condicional{
 	public double puntuacion() {
 		return 0.0;
 		
+	}
+	
+	@Override
+	public String lineaTxt() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
