@@ -36,6 +36,31 @@ public class Grass extends Spell{
 		return linea;
 	}
 	
+	@Override
+	public void settAtributo(int opcion, int valor) {
+		switch(opcion) {
+		case 1:
+			this.duracionStun = valor;
+			break;
+		case 2:
+			this.cantPlantas = valor;
+			break;
+		}
+		
+	}
+	
+	@Override
+	public String getMenuAtributos() {
+		String linea = "1.- Duracion del Stun"
+				+ "\n2.- Cantidad de Plantas";
+		return linea;
+	}
+	
+	@Override
+	public int getContadorAtributos() {
+		return 2;
+	}
+	
 	
 	
 	

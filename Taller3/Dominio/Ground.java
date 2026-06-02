@@ -29,6 +29,26 @@ public class Ground extends Spell{
 		String linea = this.nombreHechizo+";"+this.tipo+";"+this.daño+";"+this.mejoraDefensa;
 		return linea;
 	}
+	
+	@Override
+	public void settAtributo(int opcion, int valor) {
+		switch(opcion) {
+		case 1:
+			this.mejoraDefensa = valor;
+			break;
+		}
+	}
+	
+	@Override
+	public String getMenuAtributos() {
+		String linea = "1.- Mejora Defensa";
+		return linea;
+	}
+	
+	@Override
+	public int getContadorAtributos() {
+		return 1;
+	}
 
 	
 }

@@ -1,6 +1,6 @@
 package Dominio;
 
-public class Spell implements Condicional{
+public abstract class Spell implements Condicional{
 	
 	protected String nombreHechizo;
 	protected String tipo;
@@ -24,6 +24,10 @@ public class Spell implements Condicional{
 		return daño;
 	}
 
+	public void setDaño(int daño) {
+		this.daño = daño;
+	}
+
 	@Override
 	public String toString() {
 		return "Spell [nombreHechizo=" + nombreHechizo + ", tipo=" + tipo + ", daño=" + daño + "]";
@@ -40,6 +44,11 @@ public class Spell implements Condicional{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public abstract void settAtributo(int opcion, int valor);
+	
+	public abstract String getMenuAtributos();
+	public abstract int getContadorAtributos();
 	
 	
 	

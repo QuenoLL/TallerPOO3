@@ -11,6 +11,10 @@ public interface ISystem {
 	void sobrescribirArchSpell();
 	void addSpell(String name, String tipo, int daño, String variable);
 	void modificarMagoHechizo(int indice,int opcion, int indiceSpell);
+	void removerHechizo(int indice);
+	void removerMago(int indice);
+	String modificarHechizo(int indice, int key, int valor);
+	String modificarDaño(int indiceSpell, int dañoNuevo);
 	String viewSpells();
 	String viewMages();
 	String mejoresHechizos();
@@ -18,5 +22,7 @@ public interface ISystem {
 	String viewSpellPuntuacion();
 	String viewMagesPuntuacion();
 	String getListaSpellMago(int indiceMago);
+	String getMenuAtributosSpells(int indice);
+	int getConteoAtributos(int indice);
 
 }

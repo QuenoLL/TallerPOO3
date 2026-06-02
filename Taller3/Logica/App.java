@@ -169,8 +169,20 @@ public class App {
 				modificarMago();
 				break;
 				
+			case 3:
+				eliminarMago();
+				break;
+				
 			case 4:
 				agregarHechizo();
+				break;
+				
+			case 5:
+				modificarHechizo();
+				break;
+				
+			case 6:
+				eliminarHechizo();
 				break;
 				
 			case 7:
@@ -178,6 +190,155 @@ public class App {
 			}
 		}
 		
+	}
+
+	private static void eliminarMago() {
+		int indice = 0;
+		String decision = null;
+		
+		for(int i = 0; i < systemImpl.getTamañoListaM();i++) {
+			System.out.println((i+1)+".- "+systemImpl.getLineaMago(i));
+		}
+		System.out.println("Ingrese el indice del mago que desea eliminar");
+		
+		do {
+			try {
+				System.out.print("> ");
+				indice = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(indice < 1 || indice > systemImpl.getTamañoListaM());
+		indice--;//Vuelve al indice del array del systemImpl..
+		
+		System.out.println("Seguro de su eliminacion?(Si/No)");
+		do {
+			System.out.print("> ");
+			decision = entrada.nextLine();
+		}while(!decision.equalsIgnoreCase("si") && !decision.equalsIgnoreCase("no"));
+		
+		if(decision.equalsIgnoreCase("si")) {
+			systemImpl.removerMago(indice);
+			systemImpl.sobrescribirArchMages();
+			
+			System.out.println("Mago eliminado completamente del programa.....");
+		}else {
+			System.out.println("Volviendo....");
+		}
+	}
+
+	private static void eliminarHechizo() {
+		int indice = 0;
+		String decision = null;
+		
+		System.out.println(systemImpl.viewSpells());
+		
+		do {
+			try {
+				System.out.print("Ingrese el indice del hechizo a eliminar: ");
+				indice = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(indice < 1 || indice > systemImpl.getTamañoListaH());
+		indice--;//Vuelvo al indice correspondiente al array del systemImpl...
+		
+		System.out.println("Seguro de su eliminacion?(Si/No)");
+		do {
+			System.out.print("> ");
+			decision = entrada.nextLine();
+		}while(!decision.equalsIgnoreCase("si") && !decision.equalsIgnoreCase("no"));
+		
+		if(decision.equalsIgnoreCase("si")) {
+			systemImpl.removerHechizo(indice);
+			systemImpl.sobrescribirArchSpell();
+			systemImpl.sobrescribirArchMages();
+			
+			System.out.println("Hechizo eliminado completamente del programa.....");
+		}else {
+			System.out.println("Volviendo....");
+		}
+	}
+
+	private static void modificarHechizo() {
+		int indice = 0;
+		int opcion = 0;
+		
+		System.out.println(systemImpl.viewSpells());
+
+		do {
+			try {
+				System.out.print("Ingrese el indice del hechizo que desea modificar: ");
+				indice = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(indice < 1 || indice > systemImpl.getTamañoListaH());
+		indice--;//Valor para array del systemImpl...
+		
+		System.out.println("\n¿Que deseas modificar?"
+				+ "\n1.- Daño"
+				+ "\n2.- Atributos especificos"
+				+ "\n3.- Salir");
+		
+		do {
+			try {
+				System.out.print("> ");
+				opcion = Integer.parseInt(entrada.nextLine());
+			}catch(Exception e) {
+				System.out.println("ERROR. "+e.getMessage());
+			}
+		}while(opcion < 1 || opcion > 3);
+		
+		switch(opcion) {
+		case 1:
+			int daño = 0;
+			
+			do {
+				try {
+					System.out.println("Ingrese su nuevo daño para su hechizo: ");
+					daño = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(daño < 0);
+			
+			systemImpl.modificarDaño(indice, daño);
+			break;
+		
+		case 2:
+			System.out.println("¿Que desea modificar?");
+			System.out.println(systemImpl.getMenuAtributosSpells(indice));
+			
+			int llave = 0;
+			do {
+				try {
+					System.out.print("> ");
+					llave = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(llave < 1 || llave > systemImpl.getConteoAtributos(indice));
+			
+			int valor = 0;
+			do {
+				try {
+					System.out.println("Ingrese el nuevo valor: ");
+					valor = Integer.parseInt(entrada.nextLine());
+				}catch(Exception e) {
+					System.out.println("ERROR. "+e.getMessage());
+				}
+			}while(valor < 0);
+			
+			System.out.println(systemImpl.modificarHechizo(indice, llave, valor));
+				
+			break;
+			
+		case 3:
+			break;
+		}
+		
+		systemImpl.sobrescribirArchSpell();
 	}
 
 	private static void agregarHechizo() {
@@ -199,7 +360,11 @@ public class App {
 			}catch(Exception e) {
 				System.out.println("ERROR. "+e.getMessage());
 			}
-		}while(opcion < 1 || opcion > 4);
+		}while(opcion < 1 || opcion > 5);
+		
+		if(opcion == 5) {
+			return;
+		}
 		
 		do {
 			System.out.print("Ingrese el nombre de su Hechizo: ");
