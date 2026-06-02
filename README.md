@@ -1,4 +1,4 @@
-Integrante 1: Eugenio Román Cortés Egaña / RUT: 22.405.687-7 7 / CARRERA: Ingeniería Civil en Computación e Informatica / Usuario: QuenoLL
+Integrante 1: Eugenio Román Cortés Egaña / RUT: 22.405.687-7 7 / CARRERA: Ingeniería Civil en Computación e Informatica / Usuario: QuenoLL -
 Integrante 2: Matías Nicolás Núñez González / RUT: 22.256.666.5 / CARRERA: Ingeniería Civil en Computación e Informatica / Usuario: Manugooo
 
 Descripcion:
