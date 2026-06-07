@@ -6,11 +6,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Inicio de la aplicación.
+ * <p>
+ * Carga los datos desde archivos de texto al iniciar, y presenta al usuario
+ * un menú principal con acceso al menú de administración y al menú de análisis.
+ *
+ * @author [Eugenio Cortés Egaña, Matías Núñez González]
+ * @version 1.0
+ */
+
 public class App {
 	
-	//Instancio estaticamente la implementacion del sistema para acceder a sus metodos.
+	/**Instancio la implementacion del sistema para acceder a sus metodos. */
+	
 	private static SystemImpl systemImpl = new SystemImpl();
+	
+    /** Lector de entrada del usuario. */
+
+	
 	private static Scanner entrada = new Scanner(System.in);
+	
+	/**
+     * Main de la aplicación.
+     * <p>
+     * Carga hechizos y magos desde archivos, luego muestra el menú principal.
+     *
+     * @throws IOException si ocurre un error al leer los archivos de datos
+     */
 	
 	public static void main(String[] args) throws IOException{
 		// Nombre: Eugenio Cortés Egaña; Rut: 22.405.687-7
@@ -22,9 +45,11 @@ public class App {
 	}
 
 	/**
-	 * Muestra el menú principal que delega a los submenus.
-	 * 
-	 */
+     * Muestra el menú principal y delega a los submenús según la opción elegida.
+     * <p>
+     * Opciones disponibles: menú administrador, menú analista y salir.
+     */
+	
 	private static void menu(){
 		int opcion = 0;
 		
@@ -57,8 +82,11 @@ public class App {
 	}
 
 	/**
-	 * Delega a metodos de analisis.
-	 */
+     * Muestra el menú del analista y delega a los métodos de análisis y consulta.
+     * <p>
+     * Permite consultar rankings, listar magso y hechizos con y sin puntuación.
+     */
+	
 	private static void menuAnalista() {
 		int opcion = 0;
 		
@@ -106,38 +134,67 @@ public class App {
 		
 	}
 
-
+	/**
+     * Imprime la lista de magos junto a su puntuación calculada.
+     */
+	
 	private static void magosConPuntuacion() {
 		System.out.println();
 		System.out.println(systemImpl.viewMagesPuntuacion());
 		
 	}
 
+	/**
+     * Imprime la lista de hechizos junto a su puntuación calculada.
+     */
+	
 	private static void hechizosConPuntuacion() {
 		System.out.println();
 		System.out.println(systemImpl.viewSpellPuntuacion());
 		
 	}
 
+	/**
+     * Imprime el ranking de los tres mejores magos por puntuación.
+     */
+	
 	private static void mejoresMagos() {
 		System.out.println();
 		System.out.println(systemImpl.mejoresMagos());
 		
 	}
 
+	/**
+     * Imprime el ranking de los diez mejores hechizos por puntuación.
+     */
+	
 	private static void mejoresSpells() {
 		System.out.println();
 		System.out.println(systemImpl.mejoresHechizos());
 	}
 
+	/**
+     * Imprime la lista completa de magos registrados en el sistema.
+     */
+	
 	private static void mostrarMagos() {
 		System.out.println(systemImpl.viewMages());
 	}
 
+	/**
+     * Imprime la lista completa de hechizos registrados en el sistema.
+     */
+	
 	private static void mostrarHechizos() {
 		System.out.println(systemImpl.viewSpells());
 	}
 
+	/**
+     * Muestra el menú del administrador y deleag a los métodos de gestión.
+     * <p>
+     * Permite agregar, modificar y eliminar magos y hechizos.
+     */
+	
 	private static void menuAdministrador(){
 		int opcion = 0;
 		
@@ -192,6 +249,12 @@ public class App {
 		
 	}
 
+	/**
+     * Solicita datos al usuario y elimina el mago seleccionado del sistema.
+     * <p>
+     * Pide confirmación antes de ejecutar la eliminación y mantiene los cambios en archivo.
+     */
+	
 	private static void eliminarMago() {
 		int indice = 0;
 		String decision = null;
@@ -227,6 +290,13 @@ public class App {
 		}
 	}
 
+	/**
+     * Solicita datos al usuario y elimina el hechizo seleccionado del sistema.
+     * <p>
+     * Pide confirmación antes de ejecutar la eliminación y mantiene los cambios
+     * en los archivos de hechizos y magos.
+     */
+	
 	private static void eliminarHechizo() {
 		int indice = 0;
 		String decision = null;
@@ -260,6 +330,13 @@ public class App {
 		}
 	}
 
+	/**
+     * Solicita datos al usuario y modifica el hechizo seleccionado.
+     * <p>
+     * Permite modificar el daño base o los atributos específicos del tipo de hechizo,
+     * y mantiene los cambios en el archivo al finalizar.
+     */
+	
 	private static void modificarHechizo() {
 		int indice = 0;
 		int opcion = 0;
@@ -341,6 +418,13 @@ public class App {
 		systemImpl.sobrescribirArchSpell();
 	}
 
+	/**
+     * Solicita datos al usuario y agrega un nuevo hechizo al sistema.
+     * <p>
+     * El usuario selecciona el tipo elemental y proporciona los atributos correspondientes.
+     * mantiene los cambios en el archivo al finalizar.
+     */
+	
 	private static void agregarHechizo() {
 		int opcion = 0;
 		String name = null;
@@ -472,6 +556,13 @@ public class App {
 		systemImpl.sobrescribirArchSpell();	
 	}
 
+	/**
+     * Solicita datos al usuario y modifica los hechizos del mago seleccionado.
+     * <p>
+     * Permite agregar o eliminar hechizos de la lista del mago,
+     * y mantienee los cambios en el archivo al finalizar.
+     */
+	
 	private static void modificarMago() {
 		int indice = 0;//Recordar que es (indice + 1) la que ingresa el usuario...
 		int opcion = 0;
@@ -531,6 +622,13 @@ public class App {
 				
 	}
 	
+	/**
+     * Solicita y valida el índice de un hechizo de la lista de un mago específico.
+     *
+     * @param indiceMago el índice (base 0) del mago culla lista se muestra
+     * @return el índice (base 0) del hechizo seleccionado por el usuario
+     */
+	
 	private static int indiceHechizoEliminar(int indiceMago) {
 		int indiceSpell = 0;
 		System.out.println(systemImpl.getListaSpellMago(indiceMago));
@@ -546,6 +644,12 @@ public class App {
 		
 		return indiceSpell-1;
 	}
+	
+	/**
+     * Solicita y valida el índice de un hechizo de la lista global del sistema.
+     *
+     * @return el índice (base 0) del hechizo seleccionado por el usuario
+     */
 	
 	private static int indiceHechizo() {
 		int indiceSpell = 0;
@@ -565,6 +669,13 @@ public class App {
 		return indiceSpell-1;
 	}
 
+	/**
+     * Solicita datos al usuario y agrega un nuevo mago al sistema.
+     * <p>
+     * Permite asignar hechizos existentes al mago durante su creación,
+     * y mantiene los cambios en el archivo al finalizar.
+     */
+	
 	private static void agregarMago() {
 		String name, opcion = null;
 		List<Integer> indicesHechizos = new ArrayList<Integer>();
@@ -606,6 +717,12 @@ public class App {
 		
 	}
 
+	/**
+     * Lee los magos desde el archivo {@code txts/Magos.txt} y los carga en el sistema.
+     *
+     * @throws IOException si el archivo no existe o no puede ser leído
+     */
+	
 	private static void leerMagos() throws IOException{
 		File file = new File("txts/Magos.txt");
 		Scanner lector = new Scanner(file);
@@ -620,6 +737,12 @@ public class App {
 		
 	}
 
+	/**
+     * Lee los hechizos desde el archivo {@code txts/Hechizos.txt} y los carga en el sistema.
+     *
+     * @throws IOException si el archivo no existe o no puede ser leído
+     */
+	
 	private static void leerHechizos() throws IOException{
 		File file = new File("txts/Hechizos.txt");
 		Scanner lector = new Scanner(file);

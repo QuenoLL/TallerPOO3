@@ -124,7 +124,7 @@ public class Mage implements Condicional{
      * Corresponde a la suma de las puntuaciones de todos los hechizos asignados.
      *
      * @return la suma de {@code puntuacion()} de cada hechizo en la lista
-     */
+     */ 
 	
 	@Override
 	public double puntuacion() {

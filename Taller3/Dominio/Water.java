@@ -165,6 +165,10 @@ public class Water extends Spell{
 		return 2;
 	}
 	
-	
+	/**
+     * Lee los hechizos desde el archivo {@code txts/Hechizos.txt} y los carga en el sistema.
+     *
+     * @throws IOException si el archivo no existe o no puede ser leído
+     */
 	
 }
