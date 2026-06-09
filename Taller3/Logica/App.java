@@ -1,3 +1,5 @@
+// Nombre: Eugenio Cortés Egaña; Rut: 22.405.687-7
+// Nombre: Matías Núñez González; Rut: 22.256.666-5
 package Logica;
 
 import java.io.File;
@@ -36,8 +38,6 @@ public class App {
      */
 	
 	public static void main(String[] args) throws IOException{
-		// Nombre: Eugenio Cortés Egaña; Rut: 22.405.687-7
-		// Nombre: Matías Núñez González; Rut: 22.256.666-5
 		
 		leerHechizos();
 		leerMagos();
